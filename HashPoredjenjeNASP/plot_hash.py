@@ -1,38 +1,55 @@
 
+import csv
 import matplotlib.pyplot as plt
-import numpy as np
+from matplotlib.ticker import ScalarFormatter
 
-n_list = []
-build_list = []
-query_list = []
+# CSV format: algo,n,build_time_s,query_time_s,metric
+data = {}
 
-with open('hash_benchmarks.csv', 'r') as f:
-    lines = f.readlines()[1:]
-    for line in lines:
-        parts = line.strip().split(',')
-        n_list.append(float(parts[0]))
-        build_list.append(float(parts[1]))
-        query_list.append(float(parts[2]))
+with open('hash_benchmarks.csv', 'r', newline='') as f:
+    r = csv.DictReader(f)
+    for row in r:
+        algo = row['algo']
+        n = int(row['n'])
+        build = float(row['build_time_s'])
+        query = float(row['query_time_s'])
+        metric = float(row['metric'])
+        data.setdefault(algo, {'n': [], 'build': [], 'query': [], 'metric': []})
+        data[algo]['n'].append(n)
+        data[algo]['build'].append(build)
+        data[algo]['query'].append(query)
+        data[algo]['metric'].append(metric)
+
+# Sort by n for each algo
+for algo in data:
+    zipped = list(zip(data[algo]['n'], data[algo]['build'], data[algo]['query'], data[algo]['metric']))
+    zipped.sort(key=lambda x: x[0])
+    data[algo]['n'], data[algo]['build'], data[algo]['query'], data[algo]['metric'] = map(list, zip(*zipped))
 
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
 
-ax1.plot(n_list, build_list, 'o-', linewidth=2, markersize=8, label='Universal Chain')
-ax1.set_xlabel('Broj kljuceva (n)', fontsize=12)
-ax1.set_ylabel('Vrijeme gradjenja (s)', fontsize=12)
-ax1.set_xscale('log')
-ax1.set_yscale('log')
-ax1.set_title('Universal Hashing - Vrijeme kreiranja', fontsize=14)
-ax1.legend()
-ax1.grid(True, alpha=0.3)
+for algo in sorted(data.keys()):
+    ax1.plot(data[algo]['n'], data[algo]['build'], marker='o', linewidth=2, label=algo)
+    ax2.plot(data[algo]['n'], data[algo]['query'], marker='s', linewidth=2, label=algo)
 
-ax2.plot(n_list, query_list, 's-', linewidth=2, markersize=8, label='Universal Chain')
-ax2.set_xlabel('Broj kljuceva (n)', fontsize=12)
-ax2.set_ylabel('Vrijeme pretrage (s)', fontsize=12)
+ax1.set_xlabel('Broj kljuceva (n)')
+ax1.set_ylabel('Vrijeme gradjenja (s)')
+ax1.set_title('Build time (sekunde)')
+
+ax2.set_xlabel('Broj kljuceva (n)')
+ax2.set_ylabel('Vrijeme pretrage (s)')
+ax2.set_title('Query time (sekunde)')
+
+# x log je OK (n varira puno), ali y ostaje LINEAR da ne dobijas 10^x na vremenu
+ax1.set_xscale('log')
 ax2.set_xscale('log')
-ax2.set_yscale('log')
-ax2.set_title('Universal Hashing - Vrijeme pretrage', fontsize=14)
-ax2.legend()
-ax2.grid(True, alpha=0.3)
+
+# Force plain seconds formatting (bez scientific 1eX / 10^X)
+for ax in (ax1, ax2):
+    ax.yaxis.set_major_formatter(ScalarFormatter(useOffset=False))
+    ax.ticklabel_format(style='plain', axis='y', useOffset=False)
+    ax.grid(True, alpha=0.3)
+    ax.legend()
 
 plt.tight_layout()
 plt.savefig('hash_benchmark_plots.png', dpi=300, bbox_inches='tight')
