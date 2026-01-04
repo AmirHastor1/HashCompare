@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\AmirH\\Desktop\\HashCompare\\HashPoredjenjeNASP\\",
+  "WorkspaceRootPath": "C:\\Users\\amiro\\Desktop\\HashCompare\\HashPoredjenjeNASP\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{16502DFE-6FCD-4467-ABAE-AF2A32E6A213}|HashPoredjenjeNASP.vcxproj|C:\\Users\\AmirH\\Desktop\\HashCompare\\HashPoredjenjeNASP\\HashPoredjenjeNASP.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{16502DFE-6FCD-4467-ABAE-AF2A32E6A213}|HashPoredjenjeNASP.vcxproj|C:\\Users\\amiro\\Desktop\\HashCompare\\HashPoredjenjeNASP\\HashPoredjenjeNASP.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{16502DFE-6FCD-4467-ABAE-AF2A32E6A213}|HashPoredjenjeNASP.vcxproj|solutionrelative:HashPoredjenjeNASP.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -20,11 +20,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "HashPoredjenjeNASP.cpp",
-              "DocumentMoniker": "C:\\Users\\AmirH\\Desktop\\HashCompare\\HashPoredjenjeNASP\\HashPoredjenjeNASP.cpp",
+              "DocumentMoniker": "C:\\Users\\amiro\\Desktop\\HashCompare\\HashPoredjenjeNASP\\HashPoredjenjeNASP.cpp",
               "RelativeDocumentMoniker": "HashPoredjenjeNASP.cpp",
-              "ToolTip": "C:\\Users\\AmirH\\Desktop\\HashCompare\\HashPoredjenjeNASP\\HashPoredjenjeNASP.cpp",
+              "ToolTip": "C:\\Users\\amiro\\Desktop\\HashCompare\\HashPoredjenjeNASP\\HashPoredjenjeNASP.cpp",
               "RelativeToolTip": "HashPoredjenjeNASP.cpp",
-              "ViewState": "AgIAAFEBAAAAAAAAAAAAAFwBAAAZAAAAAAAAAA==",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABQAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-12-01T08:40:54.611Z",
               "EditorCaption": ""
